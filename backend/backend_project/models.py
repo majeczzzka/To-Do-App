@@ -22,8 +22,7 @@ class User(db.Model):
 class Lists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    user = db.relationship("User", backref=db.backref("lists", lazy=True))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     items = db.relationship(
         "Items", backref="lists", lazy=True, cascade="all, delete-orphan"
     )
