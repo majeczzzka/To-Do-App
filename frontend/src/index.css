@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700');
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fce9e5;
+}
+
+code {
+  font-family: 'DM Sans', sans-serif;
+
+}
+
+
+/* App.css */
+
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.add-todo {
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
+  padding: 15px;
+  background-color: #f5bfb5; /* Light Coral */
+
+}
+
+.add-todo input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border: 1.5px solid #f75daa;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.add-todo button {
+  font-family: 'DM Sans', sans-serif;
+  margin-left: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #E48586; /* Coral */
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #FDE5EC;
+}
+
+.add-todo button:hover {
+  background-color: #dc7375; /* Darker Coral */
+  
+}
+
+
+.App {
+  font-family: 'Open Sans', sans-serif;
+  text-align: left;
+  padding: 20px 0;
+  text-transform: uppercase;
+  background-color: rgb(244, 232, 230);
+  /* Add other stylergb(94, 51, 42)font size, color, etc. */
+}
+
+.todo-list {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f1f1f1; /* Light Gray */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.todo-list-container {
+  margin-top: 5px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 100%;
+  
+}
+
+.todo-list {
+  height: 100vw;
+}
+
+.todo-list-container > * {
+  margin: 0;
+  border-radius: 15px;
+  border-color: #eea8aa;
+  background-color: #fcf0f0;
+
+}
+
+.list-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  background-color: #E48586; 
+  color: #fff;
+  font-size: 17px;
+  font-family: "DM Sans", sans-serif;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.list-header button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.list-header button:hover {
+  text-decoration: underline;
+}
+
+.list-title {
+  text-transform: lowercase;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #a27483;
+}
+
+.list-items {
+  list-style: none;
+  padding: 0;
+  max-width: 300px;
+  text-transform: uppercase;
+}
+
+.add-item input[type="text"] {
+  width: 70%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  max-width: 150px;
+  font-family: "DM Sans", sans-serif;
+
+}
+
+.add-item button {
+  width: 30%;
+  padding: 8px;
+  font-size: 16px;
+  background-color: #E48586; /* Light Sea Green */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.add-item button:hover {
+  background-color: #963042; /* Darker Sea Green */
+}
+
+/* TodoListItem.js */
+
+.todo-list-item {
+  border: 2px solid #ccc;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #e2e2e2; /* Light Gray */
+}
+
+.content-container0 {
+  max-width: 400px; /* Adjust this value to your preferred maximum width */
+  overflow: hidden; /* Hide overflow content */
+  white-space: normal; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+}
+
+.content-container {
+  max-width: 180px; /* Adjust this value to your preferred maximum width */
+  overflow: hidden; /* Hide overflow content */
+  white-space: normal; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+
+}
+
+.content-container2 {
+  max-width: 130px; /* Adjust this value to your preferred maximum width */
+  overflow: hidden; /* Hide overflow content */
+  white-space: normal; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+}
+
+.content-container3 {
+  max-width: 70px; /* Adjust this value to your preferred maximum width */
+  overflow: hidden; /* Hide overflow content */
+  white-space: normal; /* Prevent text from wrapping to the next line */
+  text-overflow: ellipsis; /* Display an ellipsis (...) when text overflows */
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.item-header button {
+  background-color: transparent;
+  border: none;
+  color: #c0586b; /* Light Sea Green */
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.item-header button:hover {
+  text-decoration: underline;
+}
+
+.sub-items {
+  list-style: none;
+}
+
+.sub-sub-items {
+  list-style: none;
+}
+
+.add-sub-item input[type="text"] {
+  font-family: 'DM Sans', sans-serif;
+  width: 70%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  width: 100px;
+  height: 10px;
+}
+
+.add-sub-item-button button {
+  background: none;
+  padding: 3px;
+  font-size: 12px;
+  background-color: #d67fcb; /* Light Coral */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.add-sub-item-button button:hover {
+  background-color: #9e6c9c; /* Darker Coral */
+}
+
+.sub-items {
+  margin-left: 25px;
+  font-weight:normal;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #f2f2f2; /* Light Gray */
+  border-radius: 10px;
+}
+
+.sub-sub-items {
+  font-weight: lighter;
+  text-transform: capitalize;
+}
+
+button.delete-button {
+  background: none;
+  border: none;
+  color: #c0586b;
+}
+button.logout {
+  padding: 10px 15px;
+  background-color: #E48586;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+
+}
+
+.todo-list-item.done .content-container span {
+  text-decoration: line-through;
+  /* Additional styles for the item header when the item is done */
+}
+
+.sub-items.done .content-container1 span {
+  text-decoration: line-through;
+  /* Additional styles for the item header when the item is done */
+}
+
+.sub-sub-items.done .content-container2 span {
+  text-decoration: line-through;
+  /* Additional styles for the item header when the item is done */
+}
+
+
+
+button.add-sub-sub-item-button {
+  background: none;
+  border: none;
+}
+
+/* CSS for hiding items */
+.item-container .item.hidden {
+  display: none; /* or visibility: hidden; depending on your preference */
+}
+
+/* CSS for a button that triggers visibility toggle */
+.toggle-button {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  align-items: center;
+}
+
+/* CSS for a container that holds the item and the toggle button */
+.item-container {
+  margin-bottom: 10px;
+}
+
+/* Optional: Style for when the item is visible (without "hidden" class) */
+.item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button.visibility-button {
+  background: none;
+  font-weight: bold;
+  border: none;
+  color: #c0586b;
+
+}
+
+.color-palette-0 {
+  background-color: #f5dcd2; /* Set the background color for list 0 */
+}
+
+.color-palette-1 {
+  background-color: #cfdeed; /* Set the background color for list 1 */
+}
+
+.color-palette-2 {
+  background-color: #f9d6f5; /* Set the background color for list 2 */
+}
+
+.content-container, .visibility-button, .add-sub-item-button, .delete-button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.content-container2, .visibility-button, .add-sub-sub-item-button, .delete-button, .checkbox {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.content-container3, .visibility-button, .delete-button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+/* Style the login container */
+.auth-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #f4bbbc;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Center horizontally and vertically */
+  margin-bottom: 200px;
+  position: absolute; /* Position it absolutely within the body */
+  left: 0; /* Place it at the left */
+  right: 0; /* Stretch it to the right */
+  top: 50;
+  bottom: 50;
+  position: absolute;
+  background-color: #efd3dc;
+  opacity: 0; /* Start with 0 opacity (invisible) */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+/* Style the login form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+/* Style input fields */
+.auth-form input {
+  margin-bottom: 15px; /* Increase spacing between inputs */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #E48586;
+}
+
+/* Style login button */
+.auth-form button {
+  padding: 10px 15px;
+  background-color: #E48586;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  
+}
+
+/* Add hover effect to the button */
+.auth-form button:hover {
+  background-color: #d96578; /* Slightly lighter color on hover */
+}
+
+/* Center the button horizontally */
+.auth-form button {
+  align-self: center;
+  color: #FDE5EC;
+  
+}
+
+/* Add a bit of spacing between the form and the button */
+.auth-form button {
+  margin-top: 10px;
+  
+}
+
+.auth-text {
+  color: #E48586;
+  text-align: center;
+  
+}
+
+/* Style the welcome text */
+.auth-welcome {
+  margin-top: 200px;
+  text-align: center;
+  font-size: 24px; /* Larger font size for emphasis */
+  color: #E48586;
+  opacity: 0; /* Start with 0 opacity (invisible) */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start with 0 opacity (invisible) */
+  }
+  to {
+    opacity: 1; /* End with full opacity (visible) */
+  }
+}
+
+.signup-prompt {
+  color: #E48586;
+  text-align: center;
+  font-size: 15px;
+  padding-top: 10px;
+}
+
+.signup-link {
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+  cursor:pointer;
+}
