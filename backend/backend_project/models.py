@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# from flask_login import UserMixin
+
+
 db = SQLAlchemy()
 
 
@@ -10,7 +13,21 @@ class User(db.Model):
     password_hash = db.Column(db.String(128), nullable=False)
 
     # Relationship with Lists
-    lists = db.relationship("Lists", backref="user", lazy=True)
+    lists = db.relationship(
+        "Lists", backref="user", lazy=True, cascade="all, delete-orphan"
+    )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "lists": [list.to_dict() for list in self.lists],
+        }
+
+    @property
+    def is_active(self):
+        # You can add logic here to determine if the user is active
+        return True  # For simplicity, return True by default
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -22,7 +39,7 @@ class User(db.Model):
 class Lists(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     items = db.relationship(
         "Items", backref="lists", lazy=True, cascade="all, delete-orphan"
     )
